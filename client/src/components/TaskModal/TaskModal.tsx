@@ -7,6 +7,7 @@ import styles from './TaskModal.module.css';
 type TaskModalProps = {
   taskId: string;
   onClose: () => void;
+  onDelete: (taskId: string) => void;
 };
 
 const formatDate = (value: string) =>
@@ -16,7 +17,7 @@ const formatDate = (value: string) =>
     year: 'numeric',
   }).format(new Date(value));
 
-export default function TaskModal({ taskId, onClose }: TaskModalProps) {
+export default function TaskModal({ taskId, onClose, onDelete }: TaskModalProps) {
   const { data: task, isLoading, isError, error } = useQuery({
     queryKey: ['task', taskId],
     queryFn: () => getTask(taskId),
@@ -78,6 +79,14 @@ export default function TaskModal({ taskId, onClose }: TaskModalProps) {
             <p className={styles.body}>
               {task.content ? task.content : 'No additional details'}
             </p>
+
+            <button
+              type="button"
+              className={styles.deleteButton}
+              onClick={() => onDelete(task._id)}
+            >
+              Delete task
+            </button>
           </div>
         ) : null}
       </div>

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteTask } from '../../api/tasks';
 import { useTasks } from '../../hooks/useTasks';
 import TaskModal from '../TaskModal/TaskModal';
 import TaskList from '../TaskList/TaskList';
@@ -6,10 +8,25 @@ import styles from './App.module.css';
 
 export default function App() {
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
+  const queryClient = useQueryClient();
   const { data, isLoading, isError, error } = useTasks({
     page: 1,
     limit: 10,
     search: '',
+  });
+
+  const deleteTaskMutation = useMutation({
+    mutationFn: deleteTask,
+    onSuccess: async (_data, taskId) => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ['tasks'] }),
+        queryClient.removeQueries({ queryKey: ['task', taskId] }),
+      ]);
+
+      if (selectedTaskId === taskId) {
+        setSelectedTaskId(null);
+      }
+    },
   });
 
   const tasks = data?.tasks ?? [];
@@ -21,6 +38,10 @@ export default function App() {
 
   const handleCloseModal = () => {
     setSelectedTaskId(null);
+  };
+
+  const handleDeleteTask = (taskId: string) => {
+    deleteTaskMutation.mutate(taskId);
   };
 
   return (
@@ -61,12 +82,20 @@ export default function App() {
             {error instanceof Error ? ` ${error.message}` : ''}
           </p>
         ) : (
-          <TaskList tasks={tasks} onViewDetails={handleViewDetails} />
+          <TaskList
+            tasks={tasks}
+            onViewDetails={handleViewDetails}
+            onDelete={handleDeleteTask}
+          />
         )}
       </section>
 
       {selectedTaskId ? (
-        <TaskModal taskId={selectedTaskId} onClose={handleCloseModal} />
+        <TaskModal
+          taskId={selectedTaskId}
+          onClose={handleCloseModal}
+          onDelete={handleDeleteTask}
+        />
       ) : null}
     </main>
   );
