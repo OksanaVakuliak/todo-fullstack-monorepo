@@ -3,17 +3,21 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createTask, deleteTask } from '../../api/tasks';
 import { useTasks } from '../../hooks/useTasks';
 import AddTaskForm from '../AddTaskForm/AddTaskForm';
+import TaskPagination from '../TaskPagination/TaskPagination';
 import TaskModal from '../TaskModal/TaskModal';
+import TaskSearch from '../TaskSearch/TaskSearch';
 import TaskList from '../TaskList/TaskList';
 import styles from './App.module.css';
 
 export default function App() {
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
   const queryClient = useQueryClient();
   const { data, isLoading, isError, error } = useTasks({
-    page: 1,
-    limit: 10,
-    search: '',
+    page,
+    limit: 5,
+    search,
   });
 
   const deleteTaskMutation = useMutation({
@@ -39,6 +43,8 @@ export default function App() {
 
   const tasks = data?.tasks ?? [];
   const totalTasks = data?.totalTasks ?? 0;
+  const totalPages = data?.totalPages ?? 0;
+  const currentPage = totalPages > 0 ? Math.min(page, totalPages) : 1;
 
   const handleViewDetails = (taskId: string) => {
     setSelectedTaskId(taskId);
@@ -46,6 +52,16 @@ export default function App() {
 
   const handleCloseModal = () => {
     setSelectedTaskId(null);
+  };
+
+  const handleSearchChange = (value: string) => {
+    setPage(1);
+    setSearch(value);
+  };
+
+  const handlePageChange = (nextPage: number) => {
+    setSelectedTaskId(null);
+    setPage(nextPage);
   };
 
   const handleDeleteTask = (taskId: string) => {
@@ -93,6 +109,14 @@ export default function App() {
           <span className={styles.panelMeta}>{tasks.length} shown</span>
         </div>
 
+        <div className={styles.filters}>
+          <TaskSearch value={search} onChange={handleSearchChange} />
+          <p className={styles.panelMeta}>
+            {totalTasks} total{' '}
+            {totalPages > 0 ? `· page ${currentPage} of ${totalPages}` : ''}
+          </p>
+        </div>
+
         {isLoading ? (
           <p className={styles.state}>Loading tasks...</p>
         ) : isError ? (
@@ -107,6 +131,12 @@ export default function App() {
             onDelete={handleDeleteTask}
           />
         )}
+
+        <TaskPagination
+          page={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </section>
 
       {selectedTaskId ? (
