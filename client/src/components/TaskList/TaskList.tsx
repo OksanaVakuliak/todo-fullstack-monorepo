@@ -1,0 +1,28 @@
+import styles from './TaskList.module.css';
+import type { Task } from '../../types/task';
+import TaskItem from '../TaskItem/TaskItem';
+
+type TaskListProps = {
+  tasks: Task[];
+};
+
+export default function TaskList({ tasks }: TaskListProps) {
+  if (tasks.length === 0) {
+    return (
+      <div className={styles.emptyState}>
+        <h2>No tasks yet</h2>
+        <p>Once the API returns data, the list will appear here.</p>
+      </div>
+    );
+  }
+
+  return (
+    <ul className={styles.list}>
+      {tasks.map((task) => (
+        <li key={task._id} className={styles.listItem}>
+          <TaskItem task={task} />
+        </li>
+      ))}
+    </ul>
+  );
+}

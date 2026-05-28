@@ -1,0 +1,93 @@
+.app {
+  min-height: 100svh;
+  padding: 40px 24px 56px;
+  display: grid;
+  gap: 28px;
+  background:
+    radial-gradient(circle at top left, rgba(170, 59, 255, 0.14), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(170, 59, 255, 0.08), transparent 28%);
+}
+
+.hero,
+.panel {
+  width: min(100%, 960px);
+  margin: 0 auto;
+}
+
+.hero {
+  padding: 28px 0 12px;
+  text-align: left;
+}
+
+.eyebrow,
+.panelLabel {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  color: var(--accent);
+}
+
+.lead {
+  max-width: 54ch;
+  color: var(--text);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.stat {
+  min-width: 160px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow);
+}
+
+.statValue {
+  display: block;
+  font-size: 1.6rem;
+  color: var(--text-h);
+}
+
+.statLabel {
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.panel {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.panelHeader h2 {
+  margin: 0;
+}
+
+.panelMeta {
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.state {
+  margin: 0;
+  padding: 18px 0 4px;
+  color: var(--text);
+}
