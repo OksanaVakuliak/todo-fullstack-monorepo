@@ -12,6 +12,11 @@
   --shadow:
     rgba(13, 83, 14, 0.12) 0 10px 15px -3px,
     rgba(13, 83, 14, 0.06) 0 4px 6px -2px;
+  --shadow-hover:
+    rgba(13, 83, 14, 0.16) 0 16px 24px -6px,
+    rgba(13, 83, 14, 0.08) 0 8px 12px -8px;
+  --transition: 160ms ease;
+  --focus-ring: 0 0 0 3px rgba(48, 109, 41, 0.18);
 
   --sans: 'Ubuntu', system-ui, sans-serif;
   --heading: 'Ubuntu', system-ui, sans-serif;
@@ -69,6 +74,17 @@ h2 {
 
 p {
   margin: 0;
+}
+
+button,
+input,
+textarea {
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition),
+    color var(--transition),
+    transform var(--transition);
 }
 
 @media (min-width: 768px) {

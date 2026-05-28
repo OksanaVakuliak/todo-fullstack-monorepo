@@ -45,6 +45,16 @@
   border-radius: 18px;
   background: var(--code-bg);
   box-shadow: var(--shadow);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.stat:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
 }
 
 .statValue {
@@ -64,6 +74,14 @@
   border-radius: 28px;
   background: var(--code-bg);
   box-shadow: var(--shadow);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.panel:focus-within {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-hover);
 }
 
 .panelHeader {

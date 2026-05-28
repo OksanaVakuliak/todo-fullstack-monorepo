@@ -32,9 +32,21 @@
   cursor: not-allowed;
 }
 
+.button:hover:not(:disabled),
+.button:focus-visible:not(:disabled),
+.pageButton:hover,
+.pageButton:focus-visible {
+  border-color: var(--accent);
+  background: var(--bg);
+  box-shadow: var(--focus-ring);
+  transform: translateY(-1px);
+  outline: none;
+}
+
 .pageButton.active {
   border-color: var(--accent-border);
   background: var(--accent-bg);
+  box-shadow: inset 0 0 0 1px var(--accent-border);
 }
 
 @media (min-width: 640px) {
