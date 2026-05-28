@@ -41,7 +41,7 @@ export default function TaskPagination({
       </button>
 
       <div className={styles.pages}>
-        {visiblePages.map((currentPage) => (
+        {visiblePages.map(currentPage => (
           <button
             key={currentPage}
             type="button"

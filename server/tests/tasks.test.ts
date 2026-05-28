@@ -40,7 +40,9 @@ const mockedTaskModel = {
   create: jest.fn() as jest.MockedFunction<
     (task: { title: string; content?: string }) => Promise<TaskRecord>
   >,
-  findById: jest.fn() as jest.MockedFunction<(id: string) => Promise<TaskRecord | null>>,
+  findById: jest.fn() as jest.MockedFunction<
+    (id: string) => Promise<TaskRecord | null>
+  >,
   findByIdAndDelete: jest.fn() as jest.MockedFunction<
     (id: string) => Promise<TaskRecord | null>
   >,
@@ -52,15 +54,24 @@ await jest.unstable_mockModule('../src/models/task.js', () => ({
 
 const { default: app } = await import('../src/app.js');
 
-const buildFindQueryMock = (tasks: TaskRecord[], totalTasks: number): TasksFindQuery => {
-  const countDocuments = jest.fn() as jest.MockedFunction<() => Promise<number>>;
+const buildFindQueryMock = (
+  tasks: TaskRecord[],
+  totalTasks: number,
+): TasksFindQuery => {
+  const countDocuments = jest.fn() as jest.MockedFunction<
+    () => Promise<number>
+  >;
   countDocuments.mockResolvedValue(totalTasks);
 
   const query: TasksFindQuery = {
-    where: jest.fn() as jest.MockedFunction<(filter: TasksSearchFilter) => TasksFindQuery>,
+    where: jest.fn() as jest.MockedFunction<
+      (filter: TasksSearchFilter) => TasksFindQuery
+    >,
     clone: jest.fn() as jest.MockedFunction<() => TasksCountQuery>,
     skip: jest.fn() as jest.MockedFunction<(value: number) => TasksFindQuery>,
-    limit: jest.fn() as jest.MockedFunction<(value: number) => Promise<TaskRecord[]>>,
+    limit: jest.fn() as jest.MockedFunction<
+      (value: number) => Promise<TaskRecord[]>
+    >,
   };
 
   query.where.mockReturnValue(query);
@@ -88,7 +99,9 @@ describe('Tasks API', () => {
     const tasks = [makeTask({ title: 'Test task', content: 'Test content' })];
     const query = mockTasksFind(tasks, 1);
 
-    const response = await request(app).get('/tasks?page=1&limit=10&search=test');
+    const response = await request(app).get(
+      '/tasks?page=1&limit=10&search=test',
+    );
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({

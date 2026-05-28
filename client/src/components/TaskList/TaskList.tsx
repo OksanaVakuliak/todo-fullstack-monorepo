@@ -24,7 +24,7 @@ export default function TaskList({
 
   return (
     <ul className={styles.list}>
-      {tasks.map((task) => (
+      {tasks.map(task => (
         <li key={task._id} className={styles.listItem}>
           <TaskItem
             task={task}
