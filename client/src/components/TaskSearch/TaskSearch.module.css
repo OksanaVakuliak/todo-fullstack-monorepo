@@ -1,6 +1,7 @@
 .search {
   display: grid;
   gap: 8px;
+  min-width: 0;
 }
 
 .label {
@@ -11,11 +12,10 @@
 
 .input {
   width: 100%;
-  box-sizing: border-box;
   padding: 12px 14px;
   border: 1px solid var(--border);
   border-radius: 16px;
-  background: var(--code-bg);
+  background: var(--bg);
   color: var(--text-h);
   font: inherit;
 }
@@ -23,4 +23,6 @@
 .input:focus {
   outline: 2px solid var(--accent-border);
   outline-offset: 2px;
+  border-color: var(--accent);
+  box-shadow: var(--focus-ring);
 }

@@ -10,12 +10,16 @@ export default function TaskSearch({ value, onChange }: TaskSearchProps) {
   const [inputValue, setInputValue] = useState(value);
 
   useEffect(() => {
+    if (inputValue === value) {
+      return;
+    }
+
     const timeoutId = window.setTimeout(() => {
       onChange(inputValue);
     }, 500);
 
     return () => window.clearTimeout(timeoutId);
-  }, [inputValue, onChange]);
+  }, [inputValue, onChange, value]);
 
   return (
     <label className={styles.search}>
@@ -24,7 +28,7 @@ export default function TaskSearch({ value, onChange }: TaskSearchProps) {
         className={styles.input}
         type="search"
         value={inputValue}
-        onChange={event => setInputValue(event.target.value)}
+        onChange={(event) => setInputValue(event.target.value)}
         placeholder="Search by title or content"
       />
     </label>

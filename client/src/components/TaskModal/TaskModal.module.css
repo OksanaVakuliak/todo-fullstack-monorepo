@@ -3,7 +3,7 @@
   inset: 0;
   display: grid;
   place-items: center;
-  padding: 20px;
+  padding: 12px;
   background: rgba(8, 6, 13, 0.58);
   backdrop-filter: blur(10px);
   z-index: 50;
@@ -12,33 +12,43 @@
 .modal {
   position: relative;
   width: min(100%, 640px);
+  min-width: 0;
   max-height: min(90svh, 760px);
   overflow: auto;
-  padding: 28px;
-  border: 1px solid var(--border);
+  padding: 20px;
+  border: 2px solid var(--accent-border);
   border-radius: 28px;
-  background: var(--bg);
+  background: var(--code-bg);
   color: var(--text-h);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+  animation: modalIn 180ms ease;
 }
 
 .closeButton {
-  position: absolute;
-  top: 18px;
-  right: 18px;
+  position: static;
+  justify-self: end;
+  margin-bottom: 16px;
   padding: 8px 12px;
-  border: 1px solid var(--border);
+  border: 2px solid var(--accent-border);
   border-radius: 999px;
-  background: var(--code-bg);
+  background: var(--bg);
   color: var(--text-h);
   font: inherit;
   cursor: pointer;
 }
 
+.closeButton:hover,
+.closeButton:focus-visible {
+  border-color: var(--accent);
+  box-shadow: var(--focus-ring);
+  transform: translateY(-1px);
+  outline: none;
+}
+
 .content {
   display: grid;
   gap: 16px;
-  padding-right: 70px;
+  padding-right: 0;
   text-align: left;
   color: var(--text);
 }
@@ -87,7 +97,8 @@
 }
 
 .deleteButton {
-  justify-self: start;
+  width: 100%;
+  justify-self: stretch;
   padding: 10px 16px;
   border: 1px solid rgba(220, 38, 38, 0.35);
   border-radius: 999px;
@@ -97,15 +108,48 @@
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    transform 160ms ease,
-    box-shadow 160ms ease,
-    background-color 160ms ease;
 }
 
 .deleteButton:hover,
 .deleteButton:focus-visible {
+  background: rgba(220, 38, 38, 0.14);
+  border-color: rgba(220, 38, 38, 0.55);
   transform: translateY(-1px);
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
   outline: none;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (min-width: 640px) {
+  .modal {
+    padding: 28px;
+    border-left-width: 10px;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    margin-bottom: 0;
+  }
+
+  .content {
+    padding-right: 70px;
+  }
+
+  .deleteButton {
+    width: auto;
+    justify-self: start;
+  }
 }
