@@ -39,3 +39,19 @@ export const createTask = async (
   const task = await Task.create(req.body);
   res.status(201).json(task);
 };
+
+export const deleteTask = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  const { id } = req.params;
+
+  const task = await Task.findByIdAndDelete(id);
+
+  if (!task) {
+    res.status(404).json({ message: 'Task not found' });
+    return;
+  }
+
+  res.status(200).json({ message: 'Task deleted successfully' });
+};
