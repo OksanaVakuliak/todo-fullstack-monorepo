@@ -44,7 +44,6 @@ export default function App() {
   const tasks = data?.tasks ?? [];
   const totalTasks = data?.totalTasks ?? 0;
   const totalPages = data?.totalPages ?? 0;
-  const currentPage = totalPages > 0 ? Math.min(page, totalPages) : 1;
 
   const handleViewDetails = (taskId: string) => {
     setSelectedTaskId(taskId);
@@ -66,6 +65,10 @@ export default function App() {
 
   const handleDeleteTask = (taskId: string) => {
     deleteTaskMutation.mutate(taskId);
+
+    if (tasks.length === 1 && page > 1) {
+      setPage(page - 1);
+    }
   };
 
   const handleCreateTask = (payload: { title: string; content?: string }) => {
@@ -113,7 +116,7 @@ export default function App() {
           <TaskSearch value={search} onChange={handleSearchChange} />
           <p className={styles.panelMeta}>
             {totalTasks} total{' '}
-            {totalPages > 0 ? `· page ${currentPage} of ${totalPages}` : ''}
+            {totalPages > 0 ? `· page ${page} of ${totalPages}` : ''}
           </p>
         </div>
 
@@ -133,7 +136,7 @@ export default function App() {
         )}
 
         <TaskPagination
-          page={currentPage}
+          page={page}
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />
