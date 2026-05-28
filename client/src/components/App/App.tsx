@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteTask } from '../../api/tasks';
+import { createTask, deleteTask } from '../../api/tasks';
 import { useTasks } from '../../hooks/useTasks';
+import AddTaskForm from '../AddTaskForm/AddTaskForm';
 import TaskModal from '../TaskModal/TaskModal';
 import TaskList from '../TaskList/TaskList';
 import styles from './App.module.css';
@@ -29,6 +30,13 @@ export default function App() {
     },
   });
 
+  const createTaskMutation = useMutation({
+    mutationFn: createTask,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['tasks'] });
+    },
+  });
+
   const tasks = data?.tasks ?? [];
   const totalTasks = data?.totalTasks ?? 0;
 
@@ -42,6 +50,10 @@ export default function App() {
 
   const handleDeleteTask = (taskId: string) => {
     deleteTaskMutation.mutate(taskId);
+  };
+
+  const handleCreateTask = (payload: { title: string; content?: string }) => {
+    createTaskMutation.mutate(payload);
   };
 
   return (
@@ -63,6 +75,13 @@ export default function App() {
             <span className={styles.statLabel}>Pages</span>
           </div>
         </div>
+      </section>
+
+      <section className={styles.panel}>
+        <AddTaskForm
+          onSubmit={handleCreateTask}
+          isSubmitting={createTaskMutation.isPending}
+        />
       </section>
 
       <section className={styles.panel}>
