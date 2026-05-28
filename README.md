@@ -48,12 +48,14 @@ MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/todo_app
 Install dependencies for both apps:
 
 ```bash
+npm install
 npm run install:all
 ```
 
 Or install them separately:
 
 ```bash
+npm install
 npm install --prefix client
 npm install --prefix server
 ```
@@ -98,11 +100,19 @@ Root scripts:
 
 Client scripts:
 
+- `npm run lint --prefix client` - run client lint checks
+- `npm run lint:fix --prefix client` - fix client lint issues where possible
+- `npm run format --prefix client` - format client files
+- `npm run format:check --prefix client` - check client formatting
 - `npm run build --prefix client` - build the client
 - `npm run preview --prefix client` - preview the production client build
 
 Server scripts:
 
+- `npm run lint --prefix server` - run server TypeScript checks
+- `npm run lint:fix --prefix server` - run server TypeScript checks
+- `npm run format --prefix server` - format server files
+- `npm run format:check --prefix server` - check server formatting
 - `npm run build --prefix server` - compile the server
 - `npm run start --prefix server` - run the compiled server
 - `npm run test --prefix server` - run server tests

@@ -28,7 +28,7 @@ export default function TaskSearch({ value, onChange }: TaskSearchProps) {
         className={styles.input}
         type="search"
         value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
+        onChange={event => setInputValue(event.target.value)}
         placeholder="Search by title or content"
       />
     </label>

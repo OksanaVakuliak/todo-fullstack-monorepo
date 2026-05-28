@@ -14,7 +14,11 @@ const formatDate = (value: string) =>
     year: 'numeric',
   }).format(new Date(value));
 
-export default function TaskItem({ task, onViewDetails, onDelete }: TaskItemProps) {
+export default function TaskItem({
+  task,
+  onViewDetails,
+  onDelete,
+}: TaskItemProps) {
   return (
     <article className={styles.card}>
       <div className={styles.header}>

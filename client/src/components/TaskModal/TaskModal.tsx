@@ -17,8 +17,17 @@ const formatDate = (value: string) =>
     year: 'numeric',
   }).format(new Date(value));
 
-export default function TaskModal({ taskId, onClose, onDelete }: TaskModalProps) {
-  const { data: task, isLoading, isError, error } = useQuery({
+export default function TaskModal({
+  taskId,
+  onClose,
+  onDelete,
+}: TaskModalProps) {
+  const {
+    data: task,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ['task', taskId],
     queryFn: () => getTask(taskId),
     enabled: Boolean(taskId),
@@ -44,7 +53,7 @@ export default function TaskModal({ taskId, onClose, onDelete }: TaskModalProps)
     <div className={styles.overlay} onClick={onClose} role="presentation">
       <div
         className={styles.modal}
-        onClick={(event) => event.stopPropagation()}
+        onClick={event => event.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="task-modal-title"
@@ -91,6 +100,6 @@ export default function TaskModal({ taskId, onClose, onDelete }: TaskModalProps)
         ) : null}
       </div>
     </div>,
-    document.body,
+    document.body
   );
 }

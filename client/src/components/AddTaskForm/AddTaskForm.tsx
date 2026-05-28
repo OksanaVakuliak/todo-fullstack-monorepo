@@ -69,8 +69,8 @@ export default function AddTaskForm({
           className={`${styles.input} ${titleError ? styles.invalid : ''}`}
           type="text"
           value={title}
-          onChange={(event) => setTitle(event.target.value)}
-          onBlur={() => setTouched((current) => ({ ...current, title: true }))}
+          onChange={event => setTitle(event.target.value)}
+          onBlur={() => setTouched(current => ({ ...current, title: true }))}
           placeholder="What do you want to do?"
           maxLength={50}
           aria-invalid={Boolean(titleError)}
@@ -88,8 +88,8 @@ export default function AddTaskForm({
         <textarea
           className={`${styles.textarea} ${contentError ? styles.invalid : ''}`}
           value={content}
-          onChange={(event) => setContent(event.target.value)}
-          onBlur={() => setTouched((current) => ({ ...current, content: true }))}
+          onChange={event => setContent(event.target.value)}
+          onBlur={() => setTouched(current => ({ ...current, content: true }))}
           placeholder="Optional details"
           maxLength={500}
           rows={4}
@@ -103,7 +103,11 @@ export default function AddTaskForm({
         ) : null}
       </label>
 
-      <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+      <button
+        type="submit"
+        className={styles.submitButton}
+        disabled={isSubmitting}
+      >
         {isSubmitting ? 'Creating...' : 'Create task'}
       </button>
     </form>

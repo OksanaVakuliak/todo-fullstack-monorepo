@@ -13,6 +13,7 @@
     "format:check": "npm run format:check --prefix server && npm run format:check --prefix client"
   },
   "devDependencies": {
-    "concurrently": "^9.0.0"
+    "concurrently": "^9.0.0",
+    "prettier": "^3.8.3"
   }
 }
