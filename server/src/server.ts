@@ -1,10 +1,17 @@
 import dotenv from 'dotenv';
 import app from './app.js';
+import { connectDB } from './db/connectMongoDB.js';
 
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+const startServer = async (): Promise<void> => {
+  await connectDB();
+
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+};
+
+void startServer();
