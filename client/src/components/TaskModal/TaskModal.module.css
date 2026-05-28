@@ -100,10 +100,10 @@
   width: 100%;
   justify-self: stretch;
   padding: 10px 16px;
-  border: 2px solid #0d530e;
+  border: 1px solid rgba(220, 38, 38, 0.35);
   border-radius: 999px;
-  background: #306d29;
-  color: var(--bg);
+  background: rgba(220, 38, 38, 0.08);
+  color: #b91c1c;
   font: inherit;
   font-size: 0.95rem;
   font-weight: 600;
@@ -112,9 +112,10 @@
 
 .deleteButton:hover,
 .deleteButton:focus-visible {
-  background: var(--text-h);
+  background: rgba(220, 38, 38, 0.14);
+  border-color: rgba(220, 38, 38, 0.55);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
   outline: none;
 }
 
