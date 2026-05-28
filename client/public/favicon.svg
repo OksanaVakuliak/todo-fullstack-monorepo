@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Todo app favicon">
+  <defs>
+    <linearGradient id="bg" x1="10" y1="6" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <rect x="16" y="14" width="32" height="38" rx="7" fill="#ffffff"/>
+    <rect x="23" y="10" width="18" height="8" rx="4" fill="#e0f2fe"/>
+  </g>
+  <path d="M24 31.5 29 36.5 41 24.5" fill="none" stroke="#10b981" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M23 43h18" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+</svg>
