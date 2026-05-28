@@ -1,0 +1,87 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(8, 6, 13, 0.58);
+  backdrop-filter: blur(10px);
+  z-index: 50;
+}
+
+.modal {
+  position: relative;
+  width: min(100%, 640px);
+  max-height: min(90svh, 760px);
+  overflow: auto;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--bg);
+  color: var(--text-h);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+}
+
+.closeButton {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--code-bg);
+  color: var(--text-h);
+  font: inherit;
+  cursor: pointer;
+}
+
+.content {
+  display: grid;
+  gap: 16px;
+  padding-right: 70px;
+  text-align: left;
+  color: var(--text);
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  color: var(--accent);
+}
+
+.title {
+  margin: 0;
+  color: var(--text-h);
+}
+
+.meta {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.meta div {
+  display: grid;
+  gap: 4px;
+}
+
+.meta dt {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text);
+}
+
+.meta dd {
+  margin: 0;
+  color: var(--text-h);
+}
+
+.body,
+.state {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.6;
+}

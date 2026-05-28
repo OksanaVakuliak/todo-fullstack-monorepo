@@ -3,6 +3,7 @@ import type { Task } from '../../types/task';
 
 type TaskItemProps = {
   task: Task;
+  onViewDetails: (taskId: string) => void;
 };
 
 const formatDate = (value: string) =>
@@ -12,7 +13,7 @@ const formatDate = (value: string) =>
     year: 'numeric',
   }).format(new Date(value));
 
-export default function TaskItem({ task }: TaskItemProps) {
+export default function TaskItem({ task, onViewDetails }: TaskItemProps) {
   return (
     <article className={styles.card}>
       <div className={styles.header}>
@@ -31,6 +32,14 @@ export default function TaskItem({ task }: TaskItemProps) {
       ) : (
         <p className={styles.placeholder}>No additional details</p>
       )}
+
+      <button
+        type="button"
+        className={styles.detailsButton}
+        onClick={() => onViewDetails(task._id)}
+      >
+        View details
+      </button>
     </article>
   );
 }

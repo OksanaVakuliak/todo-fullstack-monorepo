@@ -58,3 +58,27 @@
   opacity: 0.75;
   font-style: italic;
 }
+
+.detailsButton {
+  align-self: flex-start;
+  padding: 10px 14px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  background: var(--accent-bg);
+  color: var(--text-h);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.detailsButton:hover,
+.detailsButton:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+  outline: none;
+}

@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { useTasks } from '../../hooks/useTasks';
+import TaskModal from '../TaskModal/TaskModal';
 import TaskList from '../TaskList/TaskList';
 import styles from './App.module.css';
 
 export default function App() {
+  const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
   const { data, isLoading, isError, error } = useTasks({
     page: 1,
     limit: 10,
@@ -11,6 +14,14 @@ export default function App() {
 
   const tasks = data?.tasks ?? [];
   const totalTasks = data?.totalTasks ?? 0;
+
+  const handleViewDetails = (taskId: string) => {
+    setSelectedTaskId(taskId);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedTaskId(null);
+  };
 
   return (
     <main className={styles.app}>
@@ -50,9 +61,13 @@ export default function App() {
             {error instanceof Error ? ` ${error.message}` : ''}
           </p>
         ) : (
-          <TaskList tasks={tasks} />
+          <TaskList tasks={tasks} onViewDetails={handleViewDetails} />
         )}
       </section>
+
+      {selectedTaskId ? (
+        <TaskModal taskId={selectedTaskId} onClose={handleCloseModal} />
+      ) : null}
     </main>
   );
 }

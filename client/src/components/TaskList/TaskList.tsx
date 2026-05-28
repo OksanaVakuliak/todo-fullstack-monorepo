@@ -4,9 +4,10 @@ import TaskItem from '../TaskItem/TaskItem';
 
 type TaskListProps = {
   tasks: Task[];
+  onViewDetails: (taskId: string) => void;
 };
 
-export default function TaskList({ tasks }: TaskListProps) {
+export default function TaskList({ tasks, onViewDetails }: TaskListProps) {
   if (tasks.length === 0) {
     return (
       <div className={styles.emptyState}>
@@ -20,7 +21,7 @@ export default function TaskList({ tasks }: TaskListProps) {
     <ul className={styles.list}>
       {tasks.map((task) => (
         <li key={task._id} className={styles.listItem}>
-          <TaskItem task={task} />
+          <TaskItem task={task} onViewDetails={onViewDetails} />
         </li>
       ))}
     </ul>
