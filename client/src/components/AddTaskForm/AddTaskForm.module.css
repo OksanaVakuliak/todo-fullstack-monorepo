@@ -59,6 +59,19 @@
   outline-offset: 2px;
 }
 
+.invalid {
+  border-color: rgba(220, 38, 38, 0.55);
+}
+
+.invalid:focus {
+  outline-color: rgba(220, 38, 38, 0.45);
+}
+
+.error {
+  color: #b91c1c;
+  font-size: 0.88rem;
+}
+
 .textarea {
   resize: vertical;
   min-height: 110px;
