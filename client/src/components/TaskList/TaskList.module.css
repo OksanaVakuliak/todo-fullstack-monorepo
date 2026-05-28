@@ -12,9 +12,9 @@
 
 .emptyState {
   padding: 28px;
-  border: 1px dashed var(--border);
+  border: 2px dashed var(--accent-border);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--bg);
   text-align: left;
 }
 

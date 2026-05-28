@@ -15,9 +15,10 @@
   max-height: min(90svh, 760px);
   overflow: auto;
   padding: 28px;
-  border: 1px solid var(--border);
+  border: 2px solid var(--accent-border);
+  border-left-width: 10px;
   border-radius: 28px;
-  background: var(--bg);
+  background: var(--code-bg);
   color: var(--text-h);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
 }
@@ -27,9 +28,9 @@
   top: 18px;
   right: 18px;
   padding: 8px 12px;
-  border: 1px solid var(--border);
+  border: 2px solid var(--accent-border);
   border-radius: 999px;
-  background: var(--code-bg);
+  background: var(--bg);
   color: var(--text-h);
   font: inherit;
   cursor: pointer;
@@ -89,10 +90,10 @@
 .deleteButton {
   justify-self: start;
   padding: 10px 16px;
-  border: 1px solid rgba(220, 38, 38, 0.35);
+  border: 2px solid #0d530e;
   border-radius: 999px;
-  background: rgba(220, 38, 38, 0.08);
-  color: #b91c1c;
+  background: #306d29;
+  color: var(--bg);
   font: inherit;
   font-size: 0.95rem;
   font-weight: 600;
