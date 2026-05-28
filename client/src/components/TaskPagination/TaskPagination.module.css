@@ -1,8 +1,6 @@
 .pagination {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 12px;
   margin-top: 20px;
 }
@@ -10,11 +8,13 @@
 .pages {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
 }
 
 .button,
 .pageButton {
+  min-width: 0;
   padding: 10px 14px;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -24,6 +24,7 @@
   font-size: 0.92rem;
   font-weight: 600;
   cursor: pointer;
+  overflow-wrap: anywhere;
 }
 
 .button:disabled {
@@ -34,4 +35,13 @@
 .pageButton.active {
   border-color: var(--accent-border);
   background: var(--accent-bg);
+}
+
+@media (min-width: 640px) {
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

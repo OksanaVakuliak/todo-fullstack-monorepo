@@ -3,7 +3,7 @@
   inset: 0;
   display: grid;
   place-items: center;
-  padding: 20px;
+  padding: 12px;
   background: rgba(8, 6, 13, 0.58);
   backdrop-filter: blur(10px);
   z-index: 50;
@@ -12,11 +12,11 @@
 .modal {
   position: relative;
   width: min(100%, 640px);
+  min-width: 0;
   max-height: min(90svh, 760px);
   overflow: auto;
-  padding: 28px;
+  padding: 20px;
   border: 2px solid var(--accent-border);
-  border-left-width: 10px;
   border-radius: 28px;
   background: var(--code-bg);
   color: var(--text-h);
@@ -24,9 +24,9 @@
 }
 
 .closeButton {
-  position: absolute;
-  top: 18px;
-  right: 18px;
+  position: static;
+  justify-self: end;
+  margin-bottom: 16px;
   padding: 8px 12px;
   border: 2px solid var(--accent-border);
   border-radius: 999px;
@@ -39,7 +39,7 @@
 .content {
   display: grid;
   gap: 16px;
-  padding-right: 70px;
+  padding-right: 0;
   text-align: left;
   color: var(--text);
 }
@@ -88,7 +88,8 @@
 }
 
 .deleteButton {
-  justify-self: start;
+  width: 100%;
+  justify-self: stretch;
   padding: 10px 16px;
   border: 2px solid #0d530e;
   border-radius: 999px;
@@ -109,4 +110,27 @@
   transform: translateY(-1px);
   box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
   outline: none;
+}
+
+@media (min-width: 640px) {
+  .modal {
+    padding: 28px;
+    border-left-width: 10px;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    margin-bottom: 0;
+  }
+
+  .content {
+    padding-right: 70px;
+  }
+
+  .deleteButton {
+    width: auto;
+    justify-self: start;
+  }
 }

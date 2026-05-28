@@ -9,16 +9,13 @@
   --accent: #306d29;
   --accent-bg: rgba(48, 109, 41, 0.1);
   --accent-border: rgba(48, 109, 41, 0.45);
-  --social-bg: rgba(231, 225, 177, 0.45);
   --shadow:
     rgba(13, 83, 14, 0.12) 0 10px 15px -3px,
     rgba(13, 83, 14, 0.06) 0 4px 6px -2px;
 
   --sans: 'Ubuntu', system-ui, sans-serif;
   --heading: 'Ubuntu', system-ui, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
+  font: 16px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light;
   color: var(--text);
@@ -27,25 +24,26 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 #root {
   width: 100%;
-  max-width: none;
   margin: 0;
   text-align: center;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 h1,
@@ -56,38 +54,34 @@ h2 {
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+  font-size: 36px;
+  line-height: 1.05;
+  margin: 20px 0;
+  overflow-wrap: anywhere;
 }
+
 h2 {
-  font-size: 24px;
+  font-size: 20px;
   line-height: 118%;
-  letter-spacing: -0.24px;
   margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
+  overflow-wrap: anywhere;
 }
+
 p {
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
+@media (min-width: 768px) {
+  :root {
+    font-size: 18px;
+  }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  h1 {
+    font-size: 48px;
+    margin: 28px 0;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
 }

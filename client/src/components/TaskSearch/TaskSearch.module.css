@@ -1,6 +1,7 @@
 .search {
   display: grid;
   gap: 8px;
+  min-width: 0;
 }
 
 .label {
@@ -11,7 +12,6 @@
 
 .input {
   width: 100%;
-  box-sizing: border-box;
   padding: 12px 14px;
   border: 1px solid var(--border);
   border-radius: 16px;

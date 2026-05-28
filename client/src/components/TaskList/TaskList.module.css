@@ -13,11 +13,17 @@
 }
 
 .emptyState {
-  padding: 28px;
+  padding: 20px;
   border: 2px dashed var(--accent-border);
   border-radius: 20px;
   background: var(--bg);
   text-align: left;
+}
+
+@media (min-width: 640px) {
+  .emptyState {
+    padding: 28px;
+  }
 }
 
 .emptyState h2 {
