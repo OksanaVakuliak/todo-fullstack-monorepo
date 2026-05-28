@@ -31,3 +31,11 @@ export const getAllTasks = async (
     tasks,
   });
 };
+
+export const createTask = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  const task = await Task.create(req.body);
+  res.status(201).json(task);
+};
