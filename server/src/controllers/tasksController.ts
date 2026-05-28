@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { z } from 'zod';
 import { Task } from '../models/task.js';
 import type { GetTasksInput } from '../validations/task.validation.js';
 
