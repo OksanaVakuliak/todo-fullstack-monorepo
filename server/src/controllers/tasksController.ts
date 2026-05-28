@@ -32,6 +32,22 @@ export const getAllTasks = async (
   });
 };
 
+export const getTaskById = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  const { id } = req.params;
+
+  const task = await Task.findById(id);
+
+  if (!task) {
+    res.status(404).json({ message: 'Task not found' });
+    return;
+  }
+
+  res.status(200).json(task);
+};
+
 export const createTask = async (
   req: Request,
   res: Response,
